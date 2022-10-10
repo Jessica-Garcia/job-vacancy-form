@@ -1,0 +1,31 @@
+
+.container{
+    background-color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* flex-direction: column;
+    justify-content: center; */
+    width: 50%;
+    padding: 2rem;
+    border-radius: 15px;
+    color: var(--brown-300);
+    font-weight: 700;
+    border: var(--brown-300) solid 2px;
+    margin-right: 5rem;
+}
+
+.container button {
+    margin-top: 3.4rem;
+    color: var(--white);
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--brown-300);
+    border-radius: 10px;
+    max-width: 60%;
+    min-width: 50%;
+    align-self: center;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+}

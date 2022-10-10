@@ -1,0 +1,39 @@
+.headerContainer {
+    height: 10rem;
+}
+
+.headerBackground {
+    height: 100%;
+    background: linear-gradient(var(--pink-400) 50%, rgba(255,255,255,0) 0) 0 0,
+    radial-gradient(circle closest-side, var(--pink-400) 53%, rgba(255,255,255,0) 0) 0 0,
+    radial-gradient(circle closest-side, var(--pink-400) 50%, rgba(255,255,255,0) 0) 55px 0 var(--blue-200);
+    background-size: 110px 200px;
+    background-repeat: repeat-x;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+.logo{
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 9px;
+    border-top-color: var(--brown-300);
+    border-left-color: var(--brown-300);
+    border-right-color: var(--brown-300);
+    border-bottom-color: var(--brown-300);
+    
+}
+.logo img{
+    border-radius: 50%;
+    height: 13rem;
+    width: 13rem;
+
+}
