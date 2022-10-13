@@ -30,23 +30,27 @@ export const Form = ({selectedVacancy}: FormProps) => {
     }
 
     return (
-        <>
-            <form onSubmit={saveVacancy} className={style.container}>
-                <Input name='title' labelText='Titulo do Cargo' value={vacancy.title} change={handleDataChange}/>
+        <div className={style.container}>
+            <form onSubmit={saveVacancy} className={style.formContainer} id='vacancyForm'>
+                <fieldset>
+                    <Input name='title' labelText='Titulo do Cargo' value={vacancy.title} change={handleDataChange}/>
+                    
+                    <Input name='salary' type='number'labelText='Salário' value={vacancy.salary} change={handleDataChange}/>
+                    
+                    
+                    <Input name='benefits' labelText='Benefícios' value={vacancy.benefits} change={handleDataChange}/>
+                    
+                    <Input name='steps' labelText='Etapas' value={vacancy.steps} change={handleDataChange}/>
+                </fieldset>
+                <fieldset>
+                    <Input name='skills' labelText='Habilidades' value={vacancy.skills} change={handleDataChange}/>
                 
-                <Input name='salary' type='number'labelText='Salário' value={vacancy.salary} change={handleDataChange}/>
-                
-                <Input name='activities' labelText='Atividades que o cargo exerce' value={vacancy.activities} change={handleDataChange}/>
-                
-                <Input name='benefits' labelText='Benefícios' value={vacancy.benefits} change={handleDataChange}/>
-                
-                <Input name='steps' labelText='Etapas' value={vacancy.steps} change={handleDataChange}/>
-
-                <Input name='skills' labelText='Habilidades' value={vacancy.skills} change={handleDataChange}/>
-                
-                <Input name='experience' labelText='Experiêcia' value={vacancy.experience} change={handleDataChange}/>
-                <button type="submit">Salvar Modelo</button>
+                    <Input name='experience' labelText='Experiêcia' value={vacancy.experience} change={handleDataChange}/>
+                    
+                    <Input name='activities' labelText='Atividades do cargo' value={vacancy.activities} change={handleDataChange}/>
+                </fieldset>
             </form>
-        </>
+            <button type="submit" form="vacancyForm">Salvar Modelo</button>
+        </div>
     )
 }
