@@ -1,22 +1,23 @@
 .container{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .labelStyle{
     margin-top: 1rem;
-    width: 60%;
+    width: 90%;
     font-size: 1rem;
+    margin-left: 1rem;
 }
 
 .inputStyle{
     margin-top: 1rem;
-    width: 60%;
-    height: 2rem;
+    margin-left: 1rem;
+    padding: 0 1rem;
+    width: 90%;
+    height: 7rem;
     background-color: var(--pink-100);
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1rem;
     border: none;
     border-radius: 10px;
 }
