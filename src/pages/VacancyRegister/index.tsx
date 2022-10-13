@@ -24,8 +24,8 @@ export const VacancyRegister = () => {
         <>
             <Header/>
             <main className={style.mainContainer}>
-                <div className={style.select}>
-                    <select className={style.select} name="selectedVacancy" onChange={handleSelectedChange} value={selectedVacancy.id}>
+                <aside className={style.selectContainer}>
+                    <select  name="selectedVacancy" onChange={handleSelectedChange} value={selectedVacancy.id}>
                         <option value="">Selecione um modelo</option>
                         {
                             vacancyList.length && vacancyList.map(vacancy => (
@@ -33,7 +33,7 @@ export const VacancyRegister = () => {
                             ))
                         }
                     </select>
-                </div>
+                </aside>
                 <Form selectedVacancy={selectedVacancy} />
             </main>
         </>
