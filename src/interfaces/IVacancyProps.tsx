@@ -1,5 +1,5 @@
 export interface IVacancyProps {
-    id: number;
+    id?: string;
     title: string,
     salary: number,
     activities: string,
