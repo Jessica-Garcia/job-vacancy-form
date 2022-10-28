@@ -16,8 +16,19 @@ export const VacancyRegister = () => {
     }, [])
 
     const handleSelectedChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const selected = vacancyList.find(vacancy => vacancy.id === Number(e.target.value));
-        setSelectedVacancy(selected || {} as IVacancyProps)
+        console.log("value " + e.target.value)
+        const selected = vacancyList.find(vacancy => vacancy.id === e.target.value);
+
+        console.log("selected " + selected)
+        setSelectedVacancy(selected || {
+            title: '', 
+            salary: 0,
+            activities: '',
+            benefits: '',
+            steps: '',
+            skills: '',
+            experience: ''
+        } as IVacancyProps)
     }
 
     return (
@@ -34,7 +45,9 @@ export const VacancyRegister = () => {
                         }
                     </select>
                 </aside>
-                <Form selectedVacancy={selectedVacancy} />
+                <Form selectedVacancy={selectedVacancy} 
+                    setList={() => setVacancyList}
+                />
             </main>
         </>
     )

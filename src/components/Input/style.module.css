@@ -7,14 +7,12 @@
     margin-top: 1rem;
     width: 90%;
     font-size: 1rem;
-    margin-left: 1rem;
 }
 
 .inputStyle{
     margin-top: 1rem;
-    margin-left: 1rem;
     padding: 0 1rem;
-    width: 90%;
+    width: 100%;
     height: 7rem;
     background-color: var(--pink-100);
     font-size: 1rem;
