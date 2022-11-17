@@ -4,8 +4,9 @@ import style from './style.module.css'
 type InputProps = {
     name: string,
     labelText: string,
-    value: string | number | undefined,
+    value: string | number,
     type?: 'text' | 'number',
+    min?: number,
     change: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -14,12 +15,21 @@ export const Input = ({
     labelText,
     value,
     type = 'text',
+    min = 0,
     change,
 }: InputProps) => {
     return (
         <div className={style.container}>
             <label className={style.labelStyle} htmlFor={name}>{labelText}</label>
-            <input className={style.inputStyle} name={name} id={name} value={value} type={type} onChange={e => change(e)} />
+            <input 
+                className={style.inputStyle} 
+                name={name || ''} 
+                id={name} 
+                value={value || ''} 
+                type={type} 
+                min={min} 
+                onChange={e => change(e)}
+            />
         </div>
     )
 }
