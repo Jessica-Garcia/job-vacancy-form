@@ -19,6 +19,15 @@ body{
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;
 }
-body, button, select{
+body, button, select, input, textarea{
     font-family: 'Poppins', sans-serif;
+}
+
+input, textarea {
+    color: var(--brown-300);
+}
+
+:focus {
+    outline: 0;
+    color: var(--brown-300);
 }
