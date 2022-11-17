@@ -12,14 +12,12 @@ export const VacancyRegister = () => {
     useEffect(() => {
         const localStorageItems = localStorage.getItem('vacancyList')
         setVacancyList(localStorageItems ? JSON.parse(localStorageItems) : [])
-
     }, [])
 
     const handleSelectedChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        console.log("value " + e.target.value)
+
         const selected = vacancyList.find(vacancy => vacancy.id === e.target.value);
 
-        console.log("selected " + selected)
         setSelectedVacancy(selected || {
             title: '', 
             salary: 0,
@@ -30,23 +28,22 @@ export const VacancyRegister = () => {
             experience: ''
         } as IVacancyProps)
     }
-
     return (
         <>
             <Header/>
             <main className={style.mainContainer}>
                 <aside className={style.selectContainer}>
-                    <select  name="selectedVacancy" onChange={handleSelectedChange} value={selectedVacancy.id}>
-                        <option value="">Selecione um modelo</option>
+                    <select  name="selectedVacancy" onChange={handleSelectedChange} value={selectedVacancy.id || 'default'}>
+                        <option value="default">Selecione um modelo</option>
                         {
                             vacancyList.length && vacancyList.map(vacancy => (
-                                <option value={vacancy.id}>{vacancy.title}</option>
+                                <option key={vacancy.id} value={vacancy.id}>{vacancy.title}</option>
                             ))
                         }
                     </select>
                 </aside>
-                <Form selectedVacancy={selectedVacancy} 
-                    setList={() => setVacancyList}
+                <Form selectedVacancy={selectedVacancy}
+                    setList={setVacancyList}
                 />
             </main>
         </>

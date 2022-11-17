@@ -29,14 +29,25 @@
     margin: 1.6rem;
     color: var(--white);
     font-weight: 700;
-    cursor: pointer;
     background-color: var(--brown-300);
     border-radius: 10px;
     max-width: 40%;
     min-width: 30%;
-    height: 4rem;
+    height: 3rem;
     font-size: 1rem;
     font-weight: 700;
     border: none;
     align-self: flex-end;
+    transition: opacity 0.3, background-color 0.3s;
+
+}
+
+.container button:hover {
+    cursor: pointer;
+    background-color: var(--pink-400);
+    opacity: 0.8;
+
+}
+.container button:active {
+    font-size: 0.9rem;
 }
