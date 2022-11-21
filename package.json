@@ -9,11 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pdfmake": "^0.2.6",
+    "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/pdfmake": "^0.2.2",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/uuid": "^8.3.4",
