@@ -9,11 +9,17 @@ export const VacancyRegister = () => {
     const [vacancyList, setVacancyList] = useState<IVacancyProps[]>([] as IVacancyProps[])
     const [selectedVacancy, setSelectedVacancy] = useState<IVacancyProps>({} as IVacancyProps)
 
+    //Pega a lista do localStorage e renderiza no select
     useEffect(() => {
         const localStorageItems = localStorage.getItem('vacancyList')
         setVacancyList(localStorageItems ? JSON.parse(localStorageItems) : [])
     }, [])
 
+    /*
+        quando houver mudança dos valores do select, a vaga selecionada será aquela que o id for igual ao 
+        value do option do select, e o setSelectedVacancy vai colocar os valores da vaga selecionada dentro do form, ou
+        vai inserir valores vazios nele.
+    */
     const handleSelectedChange = (e: ChangeEvent<HTMLSelectElement>) => {
 
         const selected = vacancyList.find(vacancy => vacancy.id === e.target.value);
@@ -42,8 +48,10 @@ export const VacancyRegister = () => {
                         }
                     </select>
                 </aside>
-                <Form selectedVacancy={selectedVacancy}
+                <Form 
+                    selectedVacancy={selectedVacancy}
                     setList={setVacancyList}
+                    setSelectedVacancy={setSelectedVacancy}
                 />
             </main>
         </>
