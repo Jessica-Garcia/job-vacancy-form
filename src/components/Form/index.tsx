@@ -45,9 +45,10 @@ export const Form = ({selectedVacancy, setList, setSelectedVacancy}: FormProps) 
 
     const saveVacancy = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
+        
+        const localStorageItems: IVacancyProps[] = JSON.parse(localStorage.getItem('vacancyList') || '[]')
+        
         if(vagaDoForm.id){
-            const localStorageItems: IVacancyProps[] = JSON.parse(localStorage.getItem('vacancyList') || '[]')
             const vacancyList = localStorageItems.map(itemNoLocalStorage  => {
                 if(itemNoLocalStorage.id === vagaDoForm.id) {
                     return vagaDoForm
@@ -63,8 +64,16 @@ export const Form = ({selectedVacancy, setList, setSelectedVacancy}: FormProps) 
                 id: uuidv4()
             }
 
-            const localStorageItems = localStorage.getItem('vacancyList')
-            const vacancyList = localStorageItems ? JSON.parse(localStorageItems) : []
+            const vacancyList = localStorageItems
+            
+            const vacancyTitleExists = vacancyList.some((item) => {
+                return item.title === newVacancy.title
+            })
+
+            if(vacancyTitleExists){
+                return alert `Este cargo já está cadastrado`
+            }
+
             localStorage.setItem("vacancyList", JSON.stringify([...vacancyList, newVacancy]))
             
             setList((current: IVacancyProps[]) => [...current, newVacancy])
