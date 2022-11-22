@@ -1,4 +1,3 @@
-import './App.css'
 import { VacancyRegister } from './pages/VacancyRegister'
 
 function App() {

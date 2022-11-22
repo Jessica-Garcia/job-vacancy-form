@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: var(--white);
     border: var(--brown-300) solid 2px;
-    width: 56rem;
+    width: 55rem;
     border-radius: 15px;
     align-items: center;
     padding: 2rem 1rem;
@@ -23,6 +23,11 @@
     display: flex;
     gap: 3rem;
 }
+
+.activities input {
+    margin-bottom: 4px;
+}
+
 .buttons button {
     display: flex;
     justify-content: center;
@@ -39,7 +44,7 @@
     border: none;
     align-self: flex-end;
     transition: opacity 0.3, background-color 0.3s;
-
+    margin-bottom: 4px;
 }
 
 .buttons button:hover {
@@ -50,4 +55,73 @@
 }
 .buttons button:active {
     font-size: 0.9rem;
+}
+
+@media (max-width: 56.25rem) {
+    .container{
+        width: 98%;
+    }
+    
+    .formContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .activities {
+        margin-bottom: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .activities input {
+        margin-bottom: 0;
+    }
+    
+    .buttons{
+        width: 90%;
+        display: flex;
+        justify-content: flex-end;
+
+    }
+}
+
+@media (max-width: 33.9375rem) {
+    .container{
+        width: 98%;
+        margin-bottom: 2rem;
+    }
+    
+    .formContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .activities {
+        margin-bottom: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .activities input {
+        margin-bottom: 0;
+    }
+    
+    .buttons{
+        width: 98%;
+        display: flex;
+        gap: 2rem;
+        justify-content: flex-end;
+
+    }
+
+    .buttons button {
+        font-size: 0.75rem;
+        width: 100%;
+        padding: 1rem;
+        font-weight: 600;
+        gap: 0.2rem;
+    }
+
 }
