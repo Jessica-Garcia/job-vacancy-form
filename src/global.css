@@ -19,6 +19,27 @@ body{
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;
 }
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--pink-400) var(--blue-200);
+  }
+  
+  body::-webkit-scrollbar {
+    width: 2px;
+    height: .5px; /* A altura só é vista quando a rolagem é horizontal */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--blue-200);
+    padding: 2px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--pink-400);
+  }
+
+
 body, button, select, input, textarea{
     font-family: 'Poppins', sans-serif;
 }
@@ -27,7 +48,13 @@ input, textarea {
     color: var(--brown-300);
 }
 
+
+
 :focus {
     outline: 0;
     color: var(--brown-300);
+}
+
+button:focus {
+    outline: var(--pink-400) auto 3px;
 }

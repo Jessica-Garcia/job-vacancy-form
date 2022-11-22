@@ -8,7 +8,7 @@ type InputProps = {
     type?: 'text' | 'number',
     min?: number,
     required?: boolean,
-    form?: string
+    autofocus?: boolean,
     change: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -19,7 +19,7 @@ export const Input = ({
     type = 'text',
     min = 0,
     required = false,
-    form,
+    autofocus = false,
     change,
 }: InputProps) => {
     return (
@@ -33,6 +33,7 @@ export const Input = ({
                 type={type} 
                 min={min}
                 required={required}
+                autoFocus={autofocus}
                 onChange={e => change(e)}
             />
         </div>

@@ -62,6 +62,7 @@ export const Form = ({selectedVacancy, setList, setSelectedVacancy}: FormProps) 
                 ...vagaDoForm,
                 id: uuidv4()
             }
+
             const localStorageItems = localStorage.getItem('vacancyList')
             const vacancyList = localStorageItems ? JSON.parse(localStorageItems) : []
             localStorage.setItem("vacancyList", JSON.stringify([...vacancyList, newVacancy]))
@@ -82,7 +83,7 @@ export const Form = ({selectedVacancy, setList, setSelectedVacancy}: FormProps) 
     return (
         <div className={style.container}>
             <form onSubmit={saveVacancy} className={style.formContainer} id='vacancyForm' autoComplete="off">
-                <Input name='title' labelText='Titulo do Cargo *' value={vagaDoForm.title} change={handleDataChange} required={true}/> 
+                <Input name='title' labelText='Titulo do Cargo *' value={vagaDoForm.title} change={handleDataChange} required={true} autofocus/> 
                 
                 <Input name='salary' type='number'labelText='Salário *' value={vagaDoForm.salary} change={handleDataChange} required={true}/>
                 
@@ -99,15 +100,14 @@ export const Form = ({selectedVacancy, setList, setSelectedVacancy}: FormProps) 
                         labelText='Atividades do cargo' 
                         value={vagaDoForm.activities} 
                         change={handleDataChange}
-                        form="vacancyForm"
                     />
                 </div>
                 <div className={style.buttons}>
-                    <button type="button" form="vacancyForm" onClick={(e)=> VacancyPDF(vagaDoForm)}>
-                        <FilePdf weight="bold" size={20}/>
+                    <button type="button" onClick={(e)=> VacancyPDF(vagaDoForm)}>
+                        <FilePdf weight="bold" size={18}/>
                         Gerar PDF
                     </button>
-                    <button type="submit" form="vacancyForm">Salvar</button>
+                    <button type="submit">Salvar</button>
                 </div>
             </form>
         </div>

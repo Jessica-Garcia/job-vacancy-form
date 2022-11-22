@@ -1,5 +1,6 @@
 .headerContainer {
     height: 10rem;
+    width: 100vw;
 }
 
 .headerBackground {
@@ -10,12 +11,13 @@
     background-size: 110px 200px;
     background-repeat: repeat-x;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-
+    width: 100%;
 }
 
 .logo{
+    margin-top: 1rem;
     border-radius: 50%;
     height: 10rem;
     width: 10rem; 
@@ -35,5 +37,4 @@
     border-radius: 50%;
     height: 13rem;
     width: 13rem;
-
 }

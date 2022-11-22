@@ -7,10 +7,6 @@
     gap: 10rem;
 }
 
-.selectContainer{
-    margin-right: 1rem;
-}
-
 .selectContainer select {
     width: 55rem;
     height: 4rem;
@@ -21,4 +17,21 @@
     border-radius: 10px;
     border: var(--brown-300) solid 2px;
     background-color: var(--white);
+}
+
+@media (max-width: 56.25rem) {
+    .selectContainer {
+        width: 98%;
+    }
+    
+    .selectContainer select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 33.9375rem) {
+
+    .selectContainer select {
+        font-size: .9rem; 
+    }
 }

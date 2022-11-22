@@ -18,3 +18,29 @@
     border: none;
     border-radius: 10px;
 }
+
+@media (max-width: 56.25rem) {
+    .container{
+        width: 90%;
+    }
+}
+
+@media (max-width: 33.9375rem) {
+    .container{
+        width: 98%;
+    }
+
+    .labelStyle{
+        font-size: .9rem;
+    }
+    
+    .inputStyle{
+        /* margin-top: 1rem;
+        padding: 0 2rem;
+        background-color: var(--pink-100);
+        border: none;
+        border-radius: 10px; */
+        font-size: .9rem;
+        height: 3.5rem;
+    }
+}
