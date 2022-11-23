@@ -1,10 +1,9 @@
 import { VacancyRegister } from './pages/VacancyRegister'
 
 function App() {
-
   return (
     <>
-      <VacancyRegister/>
+      <VacancyRegister />
     </>
   )
 }
