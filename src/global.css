@@ -40,15 +40,13 @@ body {
   }
 
 
-body, button, select, input, textarea{
+body, button, select, input, textarea, ::placeholder{
     font-family: 'Poppins', sans-serif;
 }
 
-input, textarea {
+input, textarea, ::placeholder{
     color: var(--brown-300);
 }
-
-
 
 :focus {
     outline: 0;

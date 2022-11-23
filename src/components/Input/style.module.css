@@ -19,6 +19,16 @@
     border-radius: 10px;
 }
 
+.inputStyle::-webkit-outer-spin-button,
+.inputStyle::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.inputStyle{
+    appearance: textfield;
+}
+
 @media (max-width: 56.25rem) {
     .container{
         width: 90%;
@@ -35,11 +45,6 @@
     }
     
     .inputStyle{
-        /* margin-top: 1rem;
-        padding: 0 2rem;
-        background-color: var(--pink-100);
-        border: none;
-        border-radius: 10px; */
         font-size: .9rem;
         height: 3.5rem;
     }
