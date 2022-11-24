@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import React, { ChangeEvent, InvalidEvent } from 'react'
 import style from './style.module.css'
 
 type InputProps = {
@@ -10,6 +10,7 @@ type InputProps = {
   required?: boolean
   autofocus?: boolean
   placeholder?: string
+  invalid: (e: InvalidEvent<HTMLInputElement>) => void
   change: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -22,6 +23,7 @@ export const Input = ({
   required = false,
   autofocus = false,
   placeholder,
+  invalid,
   change,
 }: InputProps) => {
   return (
@@ -40,6 +42,7 @@ export const Input = ({
         autoFocus={autofocus}
         placeholder={placeholder}
         onChange={(e) => change(e)}
+        onInvalid={(e) => invalid(e as InvalidEvent<HTMLInputElement>)}
       />
     </div>
   )

@@ -56,3 +56,119 @@ input, textarea, ::placeholder{
 button:focus {
     outline: var(--pink-400) auto 3px;
 }
+
+.modal-overlay{
+  background-color: rgba(255, 255, 255, 0.75);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.modal-content{
+  font-family: 'Poppins', sans-serif;
+  color: var(--brown-300);
+  font-size: 1.2rem;
+  width: 19rem;
+  min-width: 12rem;
+  height: 13rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--blue-200);
+  border: var(--pink-100) solid 5px;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.modal-content h4 {
+  background-color: var(--white);
+  height: 4rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+.modal-content button {
+  background-color: var(--pink-400);
+  outline: none;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: var(--white);
+  font-weight: 700;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.modal-content button:hover {
+  background-color:#d8335c;
+  cursor: pointer;
+}
+
+.modal-overlay-req{
+  background-color: rgba(255, 255, 255, 0.75);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.modal-content-req{
+  font-family: 'Poppins', sans-serif;
+  color: var(--brown-300);
+  font-size: .8rem;
+  width: 19rem;
+  min-width: 12rem;
+  height: 13rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--blue-200);
+  border: var(--pink-100) solid 5px;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.modal-content-req h4 {
+  background-color: var(--white);
+  height: 4rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+.modal-content-req button {
+  background-color: var(--pink-400);
+  outline: none;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: var(--white);
+  font-weight: 700;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.modal-content-req button:hover {
+  background-color:#d8335c;
+  cursor: pointer;
+}

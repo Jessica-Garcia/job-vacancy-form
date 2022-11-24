@@ -1,10 +1,13 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, InvalidEvent, useEffect, useState } from 'react'
 import { Input } from '../Input'
 import { IVacancyProps } from '../../interfaces/IVacancyProps'
 import style from './style.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import { FilePdf } from 'phosphor-react'
 import { VacancyPDF } from '../../documents/vacancy/VacancyPDF'
+import Modal from 'react-modal'
+
+Modal.setAppElement('#root')
 
 type FormProps = {
   selectedVacancy: IVacancyProps
@@ -22,7 +25,9 @@ export const Form = ({
   setSelectedVacancy,
 }: FormProps) => {
   const [vagaDoForm, setVacancy] = useState<IVacancyProps>({} as IVacancyProps)
-
+  const [modalVacancyExistsIsVisible, setModalVacancyExistsIsVisible] =
+    useState(false)
+  const [modalRequiredFields, setModalRequiredFields] = useState(false)
   /*
         renderiza no form a vaga selecionada no select quando eu clico em determinada vaga no select
     */
@@ -39,6 +44,32 @@ export const Form = ({
       ...previousValue,
       [e.target.name]: e.target.value,
     }))
+  }
+
+  const handleInvalidField = (e: InvalidEvent<HTMLInputElement>) => {
+    e.target.setCustomValidity(' ')
+  }
+
+  const handleOpenModalVacancyExists = () => {
+    setModalVacancyExistsIsVisible(true)
+  }
+
+  const handleCloseModalVacancyExists = () => {
+    setModalVacancyExistsIsVisible(false)
+    backToPageTop()
+  }
+
+  const handleOpenModalRequiredFiels = () => {
+    setModalRequiredFields(true)
+  }
+
+  const handleCloseModalRequiredFields = () => {
+    setModalRequiredFields(false)
+    backToPageTop()
+  }
+
+  const backToPageTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
   /*
@@ -83,7 +114,7 @@ export const Form = ({
       })
 
       if (vacancyTitleExists) {
-        return alert`Este cargo já está cadastrado`
+        return handleOpenModalVacancyExists()
       }
 
       localStorage.setItem(
@@ -117,6 +148,7 @@ export const Form = ({
           labelText="Titulo do Cargo *"
           value={vagaDoForm.title}
           change={handleDataChange}
+          invalid={(e) => handleInvalidField(e)}
           required={true}
           autofocus
         />
@@ -128,6 +160,7 @@ export const Form = ({
           value={vagaDoForm.salary}
           change={handleDataChange}
           required={true}
+          invalid={(e) => handleInvalidField(e)}
           placeholder="0"
         />
 
@@ -135,6 +168,7 @@ export const Form = ({
           name="benefits"
           labelText="Benefícios"
           value={vagaDoForm.benefits}
+          invalid={(e) => handleInvalidField(e)}
           change={handleDataChange}
         />
 
@@ -143,6 +177,7 @@ export const Form = ({
           labelText="Etapas"
           value={vagaDoForm.steps}
           change={handleDataChange}
+          invalid={(e) => handleInvalidField(e)}
         />
 
         <Input
@@ -150,6 +185,7 @@ export const Form = ({
           labelText="Habilidades"
           value={vagaDoForm.skills}
           change={handleDataChange}
+          invalid={(e) => handleInvalidField(e)}
         />
 
         <Input
@@ -157,6 +193,7 @@ export const Form = ({
           labelText="Experiêcia"
           value={vagaDoForm.experience}
           change={handleDataChange}
+          invalid={(e) => handleInvalidField(e)}
         />
         <div className={style.activities}>
           <Input
@@ -164,23 +201,56 @@ export const Form = ({
             labelText="Atividades do cargo"
             value={vagaDoForm.activities}
             change={handleDataChange}
+            invalid={(e) => handleInvalidField(e)}
           />
         </div>
         <div className={style.buttons}>
-          <button type="button" onClick={(e) => VacancyPDF(vagaDoForm)}>
+          <button
+            type="button"
+            onClick={
+              vagaDoForm.title && vagaDoForm.salary
+                ? (e) => VacancyPDF(vagaDoForm)
+                : handleOpenModalRequiredFiels
+            }
+          >
             <FilePdf weight="bold" size={18} />
             Gerar PDF
           </button>
           <button
             type="submit"
-            onClick={() =>
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            onClick={
+              vagaDoForm.title && vagaDoForm.salary
+                ? backToPageTop
+                : handleOpenModalRequiredFiels
             }
           >
             Salvar
           </button>
         </div>
       </form>
+      <Modal
+        isOpen={modalVacancyExistsIsVisible}
+        onRequestClose={handleCloseModalVacancyExists}
+        contentLabel="Example Modal"
+        overlayClassName="modal-overlay"
+        className="modal-content"
+      >
+        <div>
+          <h4>A vaga já existe!</h4>
+        </div>
+        <button onClick={handleCloseModalVacancyExists}>X</button>
+      </Modal>
+      <Modal
+        isOpen={modalRequiredFields}
+        onRequestClose={handleCloseModalRequiredFields}
+        overlayClassName="modal-overlay-req"
+        className="modal-content-req"
+      >
+        <div>
+          <h4>Preencha os campos obrigatórios!</h4>
+        </div>
+        <button onClick={handleCloseModalRequiredFields}>X</button>
+      </Modal>
     </div>
   )
 }
