@@ -138,9 +138,10 @@ export const VacancyPDF = (vacancy: IVacancyProps) => {
     footer: FooterFile,
   }
 
-  if (vacancy.title && vacancy.salary) {
-    pdfMake.createPdf(docDefinitions).download('Vaga')
-  } else {
-    return alert('Preencha os campos obrigatórios para gerar o PDF')
+  const backToPageTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
+
+  pdfMake.createPdf(docDefinitions).download('Vaga')
+  backToPageTop()
 }
