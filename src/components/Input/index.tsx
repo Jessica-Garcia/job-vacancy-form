@@ -1,24 +1,24 @@
-import React, { ChangeEvent, InvalidEvent } from 'react'
-import style from './style.module.css'
+import React, { ChangeEvent, InvalidEvent } from "react";
+import style from "./style.module.css";
 
 type InputProps = {
-  name: string
-  labelText: string
-  value: string | number
-  type?: 'text' | 'number'
-  min?: number
-  required?: boolean
-  autofocus?: boolean
-  placeholder?: string
-  invalid: (e: InvalidEvent<HTMLInputElement>) => void
-  change: (e: ChangeEvent<HTMLInputElement>) => void
-}
+  name: string;
+  labelText: string;
+  value: string | number;
+  type?: "text" | "number";
+  min?: number;
+  required?: boolean;
+  autofocus?: boolean;
+  placeholder?: string;
+  invalid: (e: InvalidEvent<HTMLInputElement>) => void;
+  change: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 export const Input = ({
   name,
   labelText,
   value,
-  type = 'text',
+  type = "text",
   min = 0,
   required = false,
   autofocus = false,
@@ -33,8 +33,8 @@ export const Input = ({
       </label>
       <input
         className={style.inputStyle}
-        name={name || ''}
-        value={value || ''}
+        name={name || ""}
+        value={value || ""}
         id={name}
         type={type}
         min={min}
@@ -45,5 +45,5 @@ export const Input = ({
         onInvalid={(e) => invalid(e as InvalidEvent<HTMLInputElement>)}
       />
     </div>
-  )
-}
+  );
+};
