@@ -1,22 +1,22 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { Form } from '../../components/Form'
-import { Header } from '../../components/Header'
-import { IVacancyProps } from '../../interfaces/IVacancyProps'
-import style from './style.module.css'
+import { ChangeEvent, useEffect, useState } from "react";
+import { Form } from "../../components/Form";
+import { Header } from "../../components/Header";
+import { IVacancyProps } from "../../interfaces/IVacancyProps";
+import style from "./style.module.css";
 
 export const VacancyRegister = () => {
   const [vacancyList, setVacancyList] = useState<IVacancyProps[]>(
-    [] as IVacancyProps[],
-  )
+    [] as IVacancyProps[]
+  );
   const [selectedVacancy, setSelectedVacancy] = useState<IVacancyProps>(
-    {} as IVacancyProps,
-  )
+    {} as IVacancyProps
+  );
 
   // Pega a lista do localStorage e renderiza no select
   useEffect(() => {
-    const localStorageItems = localStorage.getItem('vacancyList')
-    setVacancyList(localStorageItems ? JSON.parse(localStorageItems) : [])
-  }, [])
+    const localStorageItems = localStorage.getItem("vacancyList");
+    setVacancyList(localStorageItems ? JSON.parse(localStorageItems) : []);
+  }, []);
 
   /*
         quando houver mudança dos valores do select, a vaga selecionada será aquela que o id for igual ao 
@@ -25,22 +25,22 @@ export const VacancyRegister = () => {
     */
   const handleSelectedChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selected = vacancyList.find(
-      (vacancy) => vacancy.id === e.target.value,
-    )
+      (vacancy) => vacancy.id === e.target.value
+    );
 
     setSelectedVacancy(
       selected ||
         ({
-          title: '',
+          title: "",
           salary: 0,
-          activities: '',
-          benefits: '',
-          steps: '',
-          skills: '',
-          experience: '',
-        } as IVacancyProps),
-    )
-  }
+          activities: "",
+          benefits: "",
+          steps: "",
+          skills: "",
+          experience: "",
+        } as IVacancyProps)
+    );
+  };
   return (
     <>
       <Header />
@@ -49,7 +49,7 @@ export const VacancyRegister = () => {
           <select
             name="selectedVacancy"
             onChange={handleSelectedChange}
-            value={selectedVacancy.id || 'default'}
+            value={selectedVacancy.id || "default"}
           >
             <option value="default">Selecione um modelo</option>
             {vacancyList.length &&
@@ -67,5 +67,5 @@ export const VacancyRegister = () => {
         />
       </main>
     </>
-  )
-}
+  );
+};

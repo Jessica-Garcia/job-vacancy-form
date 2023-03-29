@@ -1,147 +1,147 @@
-import { IVacancyProps } from '../../interfaces/IVacancyProps'
-import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from 'pdfmake/build/vfs_fonts'
-import { DynamicContent, TDocumentDefinitions } from 'pdfmake/interfaces'
+import { IVacancyProps } from "../../interfaces/IVacancyProps";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { DynamicContent, TDocumentDefinitions } from "pdfmake/interfaces";
 
 export const VacancyPDF = (vacancy: IVacancyProps) => {
-  pdfMake.vfs = pdfFonts.pdfMake.vfs
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
   const headerFile: any = [
     {
-      text: 'Requisitos da Vaga de Emprego\n\n',
+      text: "Requisitos da Vaga de Emprego\n\n",
       fontSize: 15,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
       margin: [20, 20, 0, 45],
     },
-  ]
+  ];
 
   const detailsFile: any = [
     {
-      text: 'Titulo do Cargo:\n\n',
+      text: "Titulo do Cargo:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.title ? vacancy.title : ''}\n\n`,
+      text: `${vacancy.title ? vacancy.title : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Sálario:\n\n',
+      text: "Sálario:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
     {
-      text: `${vacancy.salary ? vacancy.salary : ''}\n\n`,
+      text: `${vacancy.salary ? vacancy.salary : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Benefícios:\n\n',
+      text: "Benefícios:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.benefits ? vacancy.benefits : ''}\n\n`,
+      text: `${vacancy.benefits ? vacancy.benefits : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Etapas:\n\n',
+      text: "Etapas:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.steps ? vacancy.steps : ''}\n\n`,
+      text: `${vacancy.steps ? vacancy.steps : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Habilidades:\n\n',
+      text: "Habilidades:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.skills ? vacancy.skills : ''}\n\n`,
+      text: `${vacancy.skills ? vacancy.skills : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Experiência:\n\n',
+      text: "Experiência:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.experience ? vacancy.experience : ''}\n\n`,
+      text: `${vacancy.experience ? vacancy.experience : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
 
     {
-      text: 'Atividades:\n\n',
+      text: "Atividades:\n\n",
       fontSize: 12,
       bold: true,
-      color: '#e35477',
+      color: "#e35477",
     },
 
     {
-      text: `${vacancy.activities ? vacancy.activities : ''}\n\n`,
+      text: `${vacancy.activities ? vacancy.activities : ""}\n\n`,
       fontSize: 10,
       bold: false,
-      color: '#6b421b',
+      color: "#6b421b",
     },
-  ]
+  ];
 
   const FooterFile: DynamicContent = (
     currentPage: number,
-    pageCount: number,
+    pageCount: number
   ) => {
     return [
       {
         text: `${currentPage}/${pageCount}`,
-        alignment: 'right',
+        alignment: "right",
         fontSize: 6,
         margin: [0, 10, 20, 0],
       },
-    ]
-  }
+    ];
+  };
 
   const docDefinitions: TDocumentDefinitions = {
-    pageSize: 'A4',
+    pageSize: "A4",
     pageMargins: [20, 50, 20, 40],
 
     header: [headerFile],
     content: [detailsFile],
     footer: FooterFile,
-  }
+  };
 
   const backToPageTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
-  pdfMake.createPdf(docDefinitions).download('Vaga')
-  backToPageTop()
-}
+  pdfMake.createPdf(docDefinitions).download("Vaga");
+  backToPageTop();
+};

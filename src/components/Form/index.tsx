@@ -1,39 +1,39 @@
-import React, { ChangeEvent, InvalidEvent, useEffect, useState } from 'react'
-import { Input } from '../Input'
-import { IVacancyProps } from '../../interfaces/IVacancyProps'
-import style from './style.module.css'
-import { v4 as uuidv4 } from 'uuid'
-import { FilePdf } from 'phosphor-react'
-import { VacancyPDF } from '../../documents/vacancy/VacancyPDF'
-import Modal from 'react-modal'
+import React, { ChangeEvent, InvalidEvent, useEffect, useState } from "react";
+import { Input } from "../Input";
+import { IVacancyProps } from "../../interfaces/IVacancyProps";
+import style from "./style.module.css";
+import { v4 as uuidv4 } from "uuid";
+import { FilePdf } from "phosphor-react";
+import { VacancyPDF } from "../../documents/vacancy/VacancyPDF";
+import Modal from "react-modal";
 
-Modal.setAppElement('#root')
+Modal.setAppElement("#root");
 
 type FormProps = {
-  selectedVacancy: IVacancyProps
+  selectedVacancy: IVacancyProps;
   setList: (
-    current: React.SetStateAction<IVacancyProps[]> | IVacancyProps[],
-  ) => void
+    current: React.SetStateAction<IVacancyProps[]> | IVacancyProps[]
+  ) => void;
   setSelectedVacancy: (
-    current: React.SetStateAction<IVacancyProps> | IVacancyProps,
-  ) => void
-}
+    current: React.SetStateAction<IVacancyProps> | IVacancyProps
+  ) => void;
+};
 
 export const Form = ({
   selectedVacancy,
   setList,
   setSelectedVacancy,
 }: FormProps) => {
-  const [vagaDoForm, setVacancy] = useState<IVacancyProps>({} as IVacancyProps)
+  const [vagaDoForm, setVacancy] = useState<IVacancyProps>({} as IVacancyProps);
   const [modalVacancyExistsIsVisible, setModalVacancyExistsIsVisible] =
-    useState(false)
-  const [modalRequiredFields, setModalRequiredFields] = useState(false)
+    useState(false);
+  const [modalRequiredFields, setModalRequiredFields] = useState(false);
   /*
         renderiza no form a vaga selecionada no select quando eu clico em determinada vaga no select
     */
   useEffect(() => {
-    setVacancy(selectedVacancy)
-  }, [selectedVacancy])
+    setVacancy(selectedVacancy);
+  }, [selectedVacancy]);
 
   /*
         quando digitar algo no input, adiciona no input, selecionado pelo nome, o valor 
@@ -43,34 +43,34 @@ export const Form = ({
     setVacancy((previousValue) => ({
       ...previousValue,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const handleInvalidField = (e: InvalidEvent<HTMLInputElement>) => {
-    e.target.setCustomValidity(' ')
-  }
+    e.target.setCustomValidity(" ");
+  };
 
   const handleOpenModalVacancyExists = () => {
-    setModalVacancyExistsIsVisible(true)
-  }
+    setModalVacancyExistsIsVisible(true);
+  };
 
   const handleCloseModalVacancyExists = () => {
-    setModalVacancyExistsIsVisible(false)
-    backToPageTop()
-  }
+    setModalVacancyExistsIsVisible(false);
+    backToPageTop();
+  };
 
   const handleOpenModalRequiredFiels = () => {
-    setModalRequiredFields(true)
-  }
+    setModalRequiredFields(true);
+  };
 
   const handleCloseModalRequiredFields = () => {
-    setModalRequiredFields(false)
-    backToPageTop()
-  }
+    setModalRequiredFields(false);
+    backToPageTop();
+  };
 
   const backToPageTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   /*
         Quando for enviar os dados do form
@@ -86,54 +86,49 @@ export const Form = ({
      */
 
   const saveVacancy = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const localStorageItems: IVacancyProps[] = JSON.parse(
-      localStorage.getItem('vacancyList') || '[]',
-    )
+      localStorage.getItem("vacancyList") || "[]"
+    );
 
     if (vagaDoForm.id) {
       const vacancyList = localStorageItems.map((itemNoLocalStorage) => {
         if (itemNoLocalStorage.id === vagaDoForm.id) {
-          return vagaDoForm
+          return vagaDoForm;
         }
-        return itemNoLocalStorage
-      })
-      localStorage.setItem('vacancyList', JSON.stringify(vacancyList))
-      setList(vacancyList)
+        return itemNoLocalStorage;
+      });
+      localStorage.setItem("vacancyList", JSON.stringify(vacancyList));
+      setList(vacancyList);
     } else {
       const newVacancy = {
         ...vagaDoForm,
         id: uuidv4(),
-      }
-
-      const vacancyList = localStorageItems
-
+      };
+      const vacancyList = localStorageItems;
       const vacancyTitleExists = vacancyList.some((item) => {
-        return item.title === newVacancy.title
-      })
-
+        return item.title === newVacancy.title;
+      });
       if (vacancyTitleExists) {
-        return handleOpenModalVacancyExists()
+        return handleOpenModalVacancyExists();
       }
-
       localStorage.setItem(
-        'vacancyList',
-        JSON.stringify([...vacancyList, newVacancy]),
-      )
-
-      setList((current: IVacancyProps[]) => [...current, newVacancy])
+        "vacancyList",
+        JSON.stringify([...vacancyList, newVacancy])
+      );
+      setList((current: IVacancyProps[]) => [...current, newVacancy]);
     }
     setSelectedVacancy({
-      title: '',
+      title: "",
       salary: 0,
-      activities: '',
-      benefits: '',
-      steps: '',
-      skills: '',
-      experience: '',
-    } as IVacancyProps)
-  }
+      activities: "",
+      benefits: "",
+      steps: "",
+      skills: "",
+      experience: "",
+    } as IVacancyProps);
+  };
 
   return (
     <div className={style.container}>
@@ -252,5 +247,5 @@ export const Form = ({
         <button onClick={handleCloseModalRequiredFields}>X</button>
       </Modal>
     </div>
-  )
-}
+  );
+};
